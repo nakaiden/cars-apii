@@ -17,6 +17,16 @@ const pool = new Pool({
 });  
 
 const getAllVehicles = (req, res) => {
+    pool.query('SELECT * FROM Makes;')
+        .then(results => {
+            res.status(200).json(results.rows);
+        })
+        .catch(error =>{
+            throw error;
+        })
+}
+
+const getAllVehicleMakes = (req, res) => {
     pool.query('SELECT * FROM Vehicles;')
         .then(results => {
             res.status(200).json(results.rows);
@@ -27,6 +37,7 @@ const getAllVehicles = (req, res) => {
 }
 
 module.exports = {
-    getAllVehicles
+    getAllVehicles,
+    getAllVehicleMakes
 }
 
